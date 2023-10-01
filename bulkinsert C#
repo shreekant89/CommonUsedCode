@@ -1,0 +1,56 @@
+public static class EntityFrameworkExtensions
+{
+    public static void BulkInsert<T>(this DbContext context, IEnumerable<T> entities) where T : class
+    {
+        var objectContext = ((IObjectContextAdapter)context).ObjectContext;
+        var connection = objectContext.Connection;
+        if (connection.State != System.Data.ConnectionState.Open)
+            connection.Open();
+
+        using (var transaction = connection.BeginTransaction())
+        {
+            try
+            {
+                var cmd = connection.CreateCommand();
+                cmd.Transaction = transaction;
+
+                foreach (var entity in entities)
+                {
+                    var entry = context.Entry(entity);
+
+                    if (entry.State == EntityState.Detached)
+                        context.Set<T>().Attach(entity);
+
+                    entry.State = EntityState.Added;
+                }
+
+                context.SaveChanges();
+
+                transaction.Commit();
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
+        }
+    }
+}
+
+-------------------------
+and while calling you can write generic method for save 
+
+ public void BulkInsert<T>(IEnumerable<T> entities) where T : class
+ {
+     try
+     {
+         if (entities.Any())
+         { 
+             Context.BulkInsert(entities);
+         }
+     }
+     catch (Exception ex)
+     {
+         throw ex;
+     }
+ }
