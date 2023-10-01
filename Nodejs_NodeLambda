@@ -1,0 +1,52 @@
+cd /c/ProjectCopy/sws-tiger-guides/guides/sample-pre-validation			
+rm package-lock.json && rm -rf node_modules		in bash	
+npm audit --production --audit-level=critical	only check prod dependency not dev dependency		
+npm install --save-dev serverless-offline			
+C:\Users\swatff\AppData\Roaming\npm\node.cmd .\node_modules\serverless\bin\serverless offline start --httpPort 4000 --noTimeout 			
+netstat -ano|findstr "PID :3002"	kill process		
+taskkill /pid 3024 /f
+"optionalDependencies": {
+    "fsevents": "^2.3.2"
+  }			
+C:\Users\swatff\AppData\Roaming\npm\node.cmd %USERPROFILE%\Application Data\npm\node_modules\serverless\bin\serverless offline start --httpPort 4000 --noTimeout --aws-profile=dev-admin			
+@env:local @team:tiger @user:swatff @GuidedMethods.message:"GUI text event"	GUI event in datadog		
+sls deploy --noDeploy --stage dev --region ap-southeast-2  			
+From <https://www.nellysattari.com/validate-serverless-yml-firl-for-lambda-aws-before-deployment/> 
+https://gitlab.scania.com/ysp/infrastructure/generator-lambda	for genrating lambda yoeman		
+on source :- npm link  &&  tgen on distination :- npm link @guided-methods/ui-components-react			
+npm ls -g --depth=0 --link=true   	find npm link		
+npx depcheck	ununsed package		
+C:\Users\swatff\AppData\Roaming\npm\node_modules			
+npm install --location=global			
+https://playcode.io/typescript	play ground for type script		
+node-debug yo guide --beta			
+
+
+
+
+
+
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Serverless Offline",
+            "program": "%USERPROFILE%//Application Data//npm/node_modules//serverless//bin//serverless",
+            "args": ["offline", "start", "--httpPort", "4000", "--noTimeout","--aws-profile=devsomename"],
+            "protocol": "inspector",
+            "runtimeExecutable": "node",
+            "env": {
+                "operation_provisioner_table_name":"dev-tablename"
+            }, // in case env variables are needed
+            "windows": {
+                "program": "%USERPROFILE%//Application Data//npm/node_modules//serverless//bin//serverless"
+            }
+        }
+    ]
+}
+
